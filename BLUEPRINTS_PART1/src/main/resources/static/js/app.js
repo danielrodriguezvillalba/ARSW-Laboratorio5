@@ -7,10 +7,8 @@ app= (function (){
             $("#tabla tbody").empty();
 
             arreglo.map(function(blueprint){
-                var temporal = "<tr><td id=\"nombreActor\">" + blueprint.key + "</td><td id=\"puntos\">" + blueprint.value + "</td><td type=\"button\" onclick=\"app.drawPlan()\">Open</td></tr>";
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan()">Open</td></tr>';
                 $("#tabla tbody").append(temporal);
-
-                window.alert(temporal);
             })
 
             var valorTotal = arreglo.reduce(function(total, valor){
@@ -21,10 +19,11 @@ app= (function (){
         }
     };
 
-    var funcDraw = function (variable) {
-        if (variable != null){
-
+    var _funcDraw = function (variable) {
+        var dibuje = variable.points.map(function(puntos)){
+            return puntos;
         }
+        document.write(variable.points);
     }
     return {
             plansAuthor: function () {
@@ -35,8 +34,8 @@ app= (function (){
 
             drawPlan: function() {
                 author = document.getElementById("autor").value;
-                plan = document.getElementById("nombreActor").value;
-                document.write(plan);
+                plan = document.getElementById('nombreActor').innerHTML;
+                apimok.getBlueprintsByNameAndAuthor(author,plan,_funcDraw);
             }
         };
 })();

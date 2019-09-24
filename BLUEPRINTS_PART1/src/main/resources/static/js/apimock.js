@@ -2,7 +2,7 @@ var apimok = (function () {
 
     var mockdata = [];
 
-    mockdata["JhonConnor"] = [
+        mockdata["JhonConnor"] = [
         {
             author: "JhonConnor",
             name: "house",
@@ -41,7 +41,7 @@ var apimok = (function () {
         },
         getBlueprintsByNameAndAuthor:function(autor,obra,callback){
             callback(
-                mockdata[name]
+                mockdata[autor].filter(temporal => {return temporal.name === obra;})[0]
             )
         }
     }
