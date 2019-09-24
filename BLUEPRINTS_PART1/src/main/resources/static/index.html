@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+<style type="text/css">
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 40%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +34,37 @@
 </head>
 <body>
 <h1>Blueprints</h1>
-<div class="author-blueprints">
-    <div class="author">
-        <a>AUTHOR</a>
+<div>
+    <div >
+        <a>AUTHOR :</a>
 
-        <input type="text" name="blueprint">
-        <button type="button">Get Blueprints</button>
-        <script>
-            document.write(apimok);
-        </script>
+        <input type="text" id="autor">
+        <button type="button"  onclick="app.updatePlans()">Get Blueprints</button>
+
+        </br>
+        </br>
+        <body>
+        <label id="autorLabel">autor</label>
+        <label>'s blueprints :</label>
+        <table id="tabla">
+            <thead>
+            <tr>
+                <th>Blueprint name</th>
+                <th>Number of points</th>
+                <th>Open</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="nombreActor">Peter Parker</td>
+                <td id="puntos">peterparker@mail.com</td>
+                <td><input type="button" value="Open"></td>
+            </tr>
+            </tbody>
+        </table>
+        <label>Total user points : </label>
+        <label id="puntosLabel">0</label>
+        </body>
     </div>
 </div>
 </body>

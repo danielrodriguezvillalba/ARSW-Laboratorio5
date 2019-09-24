@@ -1,4 +1,4 @@
-apimok = (function () {
+var apimok = (function () {
 
     var mockdata = [];
 
@@ -36,11 +36,9 @@ apimok = (function () {
     return {
         getBlueprintsByAuthor:function(name, callback) {
             callback(
-                //document.write('Holiisadb')
                 mockdata[name]
-
             );
         }
-    };
+    }
 
 })();
