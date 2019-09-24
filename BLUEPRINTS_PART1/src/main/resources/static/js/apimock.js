@@ -37,8 +37,15 @@ var apimok = (function () {
         getBlueprintsByAuthor:function(name, callback) {
             callback(
                 mockdata[name]
-            );
+            )
+        },
+        getBlueprintsByNameAndAuthor:function(autor,obra,callback){
+            callback(
+                mockdata[name]
+            )
         }
     }
 
 })();
+
+
