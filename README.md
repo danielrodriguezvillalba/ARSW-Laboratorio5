@@ -1,4 +1,12 @@
 ## ARSW-Laboratorio5
+
+```
+Nicolás Cárdenas Chaparro
+
+Daniel Rodriguez Villalba
+
+```
+
 # Blueprint Management 3 - Heavy Client
 ##### Building a 'heavy' client with a REST API, HTML5, Javascript and CSS3. Part I.
 
