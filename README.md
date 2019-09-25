@@ -4,7 +4,6 @@
 Nicolás Cárdenas Chaparro
 
 Daniel Rodriguez Villalba
-
 ```
 
 # Blueprint Management 3 - Heavy Client
