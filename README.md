@@ -192,12 +192,82 @@ Nuestro `index.html`:
 - Have the previously created module keep private:
   - The name of the selected author. 
   - The list of name and size of the plans of the selected author. That is, a list of objects, where each object will have two properties: plan name, and number of points on the plane. Together with a public operation that allows changing the name of the currently selected author.
+
+El siguiente es el `apimock.js`, la lista con los blueprints es privada, no se puede acceder por fuera de la funcion.
+```
+var apimok = (function () {
+
+    var mockdata = [];
+
+        mockdata["JhonConnor"] = [
+        {
+            author: "JhonConnor",
+            name: "house",
+            points: [
+                {
+                    x: 50,
+                    y: 2
+                },
+                {
+                    x: 100,
+                    y: 50
+                },
+                {
+                    x: 200,
+                    y: 200
+                }
+            ]
+        },
+        {
+            author: "JhonConnor",
+            name: "gear",
+            points: [
+                {
+                    x: 30,
+                    y: 35
+                },
+                {
+                    x: 40,
+                    y: 45
+                },
+                {
+                    x: 200,
+                    y: 200
+                }
+            ]
+        }
+    ];
+
+    return {
+        getBlueprintsByAuthor:function(name, callback) {
+            callback(
+                mockdata[name]
+            )
+        },
+        getBlueprintsByNameAndAuthor:function(autor,obra,callback){
+            callback(
+                mockdata[author].map((function (variable) {
+                        if( variable.name == obra){
+                            return variable.points;
+                        }
+                    })
+                )
+            );
+        }
+    }
+
+})();
+```
+
 - Add to the module app.js a public operation that allows updating the list of plans, based on the name of its author (given as a parameter). To do this, said operation must invoke the getBlueprintsByAuthor operation of the provided apimock module, sending as a callback a function that:
   - Take the list of plans, and apply a map function that converts your elements to objects with only the name and number of points.
   - On the resulting list, make another map, which takes each of these elements, and through jQuery add a  element (with the respective ) to the table created in point 4. Consider the jQuery selectors and tutorials available online. For now do not add buttons to the generated rows.
   - On any of the two listings (the original, or the one transformed by map), apply a reduce that calculates the number of points. With this value, use jQuery to update the corresponding field within the DOM.
 - Associate the previously created operation (that of app.js) with the on-click event of the page query button.
 - Verify the operation of the application. Start the server, open the HTML5/JavaScript application, and rectify that when entering an existing user, the list of the same is loaded.
+
+En el `app.js` se implemento la funcion callback que junto con el nombre del mockdata se le pasa como parametros a la función `getBlueprintsByAuthor` para que esta se ejecute de forma asincrona.
+
   
 ## Next Week
 
@@ -209,6 +279,60 @@ Nuestro `index.html`:
 - Once the application works (front-end only), make a module (call it apiclient) that has the same operations of the apimock, but for the same use real data consulted from the REST API. For the above, review how to make GET requests with jQuery, and how the callback scheme is handled in this context.
 - Modify the app.js code so that it is possible to switch between the apimock and the apiclient with just one line of code.
 - Review the documentation and examples of Bootstrap styles (already included in the exercise), add the necessary elements to the page to make it more colorful, and closer to the mock given at the beginning of the statement.
+
+El `app.js` es el siguiente:
+```
+app= (function (){
+    var _funcModify = function (variable) {
+        if(variable != null){
+            var arreglo = variable.map(function(blueprint){
+                return {key:blueprint.name, value:blueprint.points.length}
+            })
+            $("#tabla tbody").empty();
+            arreglo.map(function(blueprint){
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan()">Open</td></tr>';
+                $("#tabla tbody").append(temporal);
+            })
+
+            var valorTotal = arreglo.reduce(function(total, valor){
+                return total.value + valor.value;
+            })
+            document.getElementById("autorLabel").innerHTML = author;
+            document.getElementById("puntosLabel").innerHTML = valorTotal;
+        }
+    };
+
+    var _funcDraw = function (variable) {
+        if(variable){
+            var punts = variable.map(function(puntos,index){
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                //ctx.clearRect(0, 0, 500, 500);
+                //ctx.beginPath();
+                ctx.moveTo(puntos[index].x,puntos[index].y);
+                ctx.lineTo(400,400);
+                ctx.stroke();
+            });
+
+        }
+
+        //document.write(dibuje);
+    };
+    return {
+            plansAuthor: function () {
+                author = document.getElementById("autor").value;
+                apimok.getBlueprintsByAuthor(author,_funcModify);
+
+            },
+
+            drawPlan: function() {
+                author = document.getElementById("autor").value;
+                plan = document.getElementById('nombreActor').innerHTML;
+                apimok.getBlueprintsByNameAndAuthor(author,plan,_funcDraw);
+            }
+        };
+})();
+```
   
   
   
