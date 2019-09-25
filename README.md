@@ -265,7 +265,8 @@ var apimok = (function () {
   - On any of the two listings (the original, or the one transformed by map), apply a reduce that calculates the number of points. With this value, use jQuery to update the corresponding field within the DOM.
 - Associate the previously created operation (that of app.js) with the on-click event of the page query button.
 - Verify the operation of the application. Start the server, open the HTML5/JavaScript application, and rectify that when entering an existing user, the list of the same is loaded.
-
+##
+Todas las funcionalidades para el punto anterior se implementaron, el `app.js` se muestra al final de la pagina.
 En el `app.js` se implemento la funcion callback que junto con el nombre del mockdata se le pasa como parametros a la función `getBlueprintsByAuthor` para que esta se ejecute de forma asincrona.
 
   
