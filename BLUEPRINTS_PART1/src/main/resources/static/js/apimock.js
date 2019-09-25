@@ -8,12 +8,16 @@ var apimok = (function () {
             name: "house",
             points: [
                 {
-                    x: 10,
-                    y: 20
+                    x: 50,
+                    y: 2
                 },
                 {
-                    x: 15,
-                    y: 25
+                    x: 100,
+                    y: 50
+                },
+                {
+                    x: 200,
+                    y: 200
                 }
             ]
         },
@@ -28,6 +32,10 @@ var apimok = (function () {
                 {
                     x: 40,
                     y: 45
+                },
+                {
+                    x: 200,
+                    y: 200
                 }
             ]
         }
@@ -41,8 +49,13 @@ var apimok = (function () {
         },
         getBlueprintsByNameAndAuthor:function(autor,obra,callback){
             callback(
-                mockdata[autor].filter(temporal => {return temporal.name === obra;})[0]
-            )
+                mockdata[author].map((function (variable) {
+                        if( variable.name == obra){
+                            return variable.points;
+                        }
+                    })
+                )
+            );
         }
     }
 

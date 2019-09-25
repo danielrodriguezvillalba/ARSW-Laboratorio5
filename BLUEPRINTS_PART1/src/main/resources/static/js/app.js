@@ -19,11 +19,21 @@ app= (function (){
     };
 
     var _funcDraw = function (variable) {
-        var dibuje = variable.points.map(function(puntos)){
-            return puntos;
+        if(variable){
+            var punts = variable.map(function(puntos,index){
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                //ctx.clearRect(0, 0, 500, 500);
+                //ctx.beginPath();
+                ctx.moveTo(puntos[index].x,puntos[index].y);
+                ctx.lineTo(400,400);
+                ctx.stroke();
+            });
+
         }
-        document.write(variable.points);
-    }
+
+        //document.write(dibuje);
+    };
     return {
             plansAuthor: function () {
                 author = document.getElementById("autor").value;
