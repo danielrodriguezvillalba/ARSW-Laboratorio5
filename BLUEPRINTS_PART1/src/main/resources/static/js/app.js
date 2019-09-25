@@ -5,7 +5,6 @@ app= (function (){
                 return {key:blueprint.name, value:blueprint.points.length}
             })
             $("#tabla tbody").empty();
-
             arreglo.map(function(blueprint){
                 var temporal = '<tr>'+ '<td>' + blueprint.key + '</td><td>' + blueprint.value + '</td><td><input type="button" value="Open"></td></tr>';
                 $("#tabla tbody").append(temporal);
