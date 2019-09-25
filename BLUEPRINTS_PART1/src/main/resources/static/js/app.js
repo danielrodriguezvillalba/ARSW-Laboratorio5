@@ -1,12 +1,12 @@
 app= (function (){
-    var funcModify = function (variable) {
+    var _funcModify = function (variable) {
         if(variable != null){
             var arreglo = variable.map(function(blueprint){
                 return {key:blueprint.name, value:blueprint.points.length}
             })
             $("#tabla tbody").empty();
             arreglo.map(function(blueprint){
-                var temporal = '<tr>'+ '<td>' + blueprint.key + '</td><td>' + blueprint.value + '</td><td><input type="button" value="Open"></td></tr>';
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan()">Open</td></tr>';
                 $("#tabla tbody").append(temporal);
             })
 
@@ -17,11 +17,24 @@ app= (function (){
             document.getElementById("puntosLabel").innerHTML = valorTotal;
         }
     };
-    return {
-            updatePlans: function () {
-                author = document.getElementById("autor").value;
-                apimok.getBlueprintsByAuthor(author,funcModify);
 
+    var _funcDraw = function (variable) {
+        var dibuje = variable.points.map(function(puntos)){
+            return puntos;
+        }
+        document.write(variable.points);
+    }
+    return {
+            plansAuthor: function () {
+                author = document.getElementById("autor").value;
+                apimok.getBlueprintsByAuthor(author,_funcModify);
+
+            },
+
+            drawPlan: function() {
+                author = document.getElementById("autor").value;
+                plan = document.getElementById('nombreActor').innerHTML;
+                apimok.getBlueprintsByNameAndAuthor(author,plan,_funcDraw);
             }
         };
 })();
