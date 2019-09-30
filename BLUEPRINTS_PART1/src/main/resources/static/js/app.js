@@ -6,7 +6,7 @@ app= (function (){
             })
             $("#tabla tbody").empty();
             arreglo.map(function(blueprint){
-                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan()">Open</td></tr>';
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(blueprint.key)">Open</td></tr>';
                 $("#tabla tbody").append(temporal);
             })
 
@@ -18,21 +18,36 @@ app= (function (){
         }
     };
 
-    var _funcDraw = function (variable) {
-        if(variable){
-            var punts = variable.map(function(puntos,index){
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                //ctx.clearRect(0, 0, 500, 500);
-                //ctx.beginPath();
-                ctx.moveTo(puntos[index].x,puntos[index].y);
-                ctx.lineTo(400,400);
-                ctx.stroke();
+    var _funcDraw = function (vari) {
+        if(vari){
+            var lastx = null;
+            var lasty = null;
+            var actx = null;
+            var acty = null;
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.clearRect(0, 0, 500, 500);
+            vari.map(function(punto){
+                punto.map(function (prue) {
+
+                    if(lastx == null){
+                        lastx = prue.x;
+                        lasty = prue.y;
+                    }
+
+                    else{
+                        actx = prue.x;
+                        acty = prue.y;
+                        ctx.moveTo(lastx,lasty);
+                        ctx.lineTo(actx,acty);
+                        ctx.stroke();
+                        lastx = actx;
+                        lasty = acty;
+                    }
+                });
             });
-
         }
-
-        //document.write(dibuje);
+                //ctx.beginPath();
     };
     return {
             plansAuthor: function () {
@@ -41,9 +56,10 @@ app= (function (){
 
             },
 
-            drawPlan: function() {
+            drawPlan: function(obra) {
                 author = document.getElementById("autor").value;
-                plan = document.getElementById('nombreActor').innerHTML;
+                //plan = document.getElementById('nombreActor').innerHTML;
+                alert(obra);
                 apimok.getBlueprintsByNameAndAuthor(author,plan,_funcDraw);
             }
         };

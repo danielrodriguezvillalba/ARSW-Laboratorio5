@@ -17,7 +17,7 @@ var apimok = (function () {
                 },
                 {
                     x: 200,
-                    y: 200
+                    y: 2
                 }
             ]
         },
@@ -32,10 +32,6 @@ var apimok = (function () {
                 {
                     x: 40,
                     y: 45
-                },
-                {
-                    x: 200,
-                    y: 200
                 }
             ]
         }
