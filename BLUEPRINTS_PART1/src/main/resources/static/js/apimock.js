@@ -30,8 +30,8 @@ var apimok = (function () {
                     y: 35
                 },
                 {
-                    x: 40,
-                    y: 45
+                    x: 100,
+                    y: 100
                 }
             ]
         }
@@ -45,12 +45,7 @@ var apimok = (function () {
         },
         getBlueprintsByNameAndAuthor:function(autor,obra,callback){
             callback(
-                mockdata[author].map((function (variable) {
-                        if( variable.name == obra){
-                            return variable.points;
-                        }
-                    })
-                )
+                mockdata[autor].filter(prueb => {return prueb.name === obra;})[0]
             );
         }
     }

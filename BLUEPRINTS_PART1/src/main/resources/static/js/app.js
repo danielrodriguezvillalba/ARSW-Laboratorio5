@@ -6,7 +6,7 @@ app= (function (){
             })
             $("#tabla tbody").empty();
             arreglo.map(function(blueprint){
-                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(blueprint.key)">Open</td></tr>';
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(\''+blueprint.key+'\')">Open</td></tr>';
                 $("#tabla tbody").append(temporal);
             })
 
@@ -19,36 +19,33 @@ app= (function (){
     };
 
     var _funcDraw = function (vari) {
-        if(vari){
+        if (vari) {
             var lastx = null;
             var lasty = null;
             var actx = null;
             var acty = null;
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
+
             ctx.clearRect(0, 0, 500, 500);
-            vari.map(function(punto){
-                punto.map(function (prue) {
+            ctx.beginPath();
 
-                    if(lastx == null){
-                        lastx = prue.x;
-                        lasty = prue.y;
-                    }
-
-                    else{
-                        actx = prue.x;
-                        acty = prue.y;
-                        ctx.moveTo(lastx,lasty);
-                        ctx.lineTo(actx,acty);
-                        ctx.stroke();
-                        lastx = actx;
-                        lasty = acty;
-                    }
-                });
+            vari.points.map(function (prue){
+                if (lastx == null) {
+                    lastx = prue.x;
+                    lasty = prue.y;
+                } else {
+                    actx = prue.x;
+                    acty = prue.y;
+                    ctx.moveTo(lastx, lasty);
+                    ctx.lineTo(actx, acty);
+                    ctx.stroke();
+                    lastx = actx;
+                    lasty = acty;
+                }
             });
         }
-                //ctx.beginPath();
-    };
+    }
     return {
             plansAuthor: function () {
                 author = document.getElementById("autor").value;
@@ -56,11 +53,10 @@ app= (function (){
 
             },
 
-            drawPlan: function(obra) {
+            drawPlan: function(name) {
                 author = document.getElementById("autor").value;
-                //plan = document.getElementById('nombreActor').innerHTML;
-                alert(obra);
-                apimok.getBlueprintsByNameAndAuthor(author,plan,_funcDraw);
+                obra = name;
+                apimok.getBlueprintsByNameAndAuthor(author,obra,_funcDraw);
             }
         };
 })();

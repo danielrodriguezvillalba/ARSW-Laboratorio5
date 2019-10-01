@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e17c169a-8b2f-4a5e-b8f7-a97d26bc4939" name="Default Changelist" comment="">
+    <list default="true" id="e17c169a-8b2f-4a5e-b8f7-a97d26bc4939" name="Default Changelist" comment="Finalizacion parte 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BLUEPRINTS_PART1/src/main/resources/static/js/apimock.js" beforeDir="false" afterPath="$PROJECT_DIR$/BLUEPRINTS_PART1/src/main/resources/static/js/apimock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BLUEPRINTS_PART1/src/main/resources/static/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/BLUEPRINTS_PART1/src/main/resources/static/js/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,6 +28,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
@@ -53,7 +55,8 @@
       <updated>1569013452959</updated>
       <workItem from="1569259657554" duration="1588000" />
       <workItem from="1569265017810" duration="17171000" />
-      <workItem from="1569373623523" duration="120000" />
+      <workItem from="1569373623523" duration="11034000" />
+      <workItem from="1569860286014" duration="13563000" />
     </task>
     <task id="LOCAL-00001" summary="Finalizacion parte 3">
       <created>1569286411587</created>
